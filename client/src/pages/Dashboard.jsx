@@ -55,11 +55,11 @@ import MainChart from '../components/MainChart';
 
 export default function DashboardPage() {
   const progressExample = [
-    { title: 'Visits', value: '29.703 Users', percent: 40, color: 'success' },
-    { title: 'Unique', value: '24.093 Users', percent: 20, color: 'info' },
+    { title: 'Carbon Emissions', value: '29.703 Users', percent: 40, color: 'success' },
+    { title: 'Nature Hours', value: '24.093 Users', percent: 20, color: 'info' },
     { title: 'Pageviews', value: '78.706 Views', percent: 60, color: 'warning' },
     { title: 'New Users', value: '22.123 Users', percent: 80, color: 'danger' },
-    { title: 'Bounce Rate', value: 'Average Rate', percent: 40.15, color: 'primary' },
+    { title: 'Return Rate', value: 'Average Rate', percent: 40.15, color: 'primary' },
   ];
 
   const progressGroupExample1 = [
@@ -77,12 +77,6 @@ export default function DashboardPage() {
     { title: 'Female', icon: cilUserFemale, value: 43 },
   ];
 
-  const progressGroupExample3 = [
-    { title: 'Organic Search', icon: cibGoogle, percent: 56, value: '191,235' },
-    { title: 'Facebook', icon: cibFacebook, percent: 15, value: '51,223' },
-    { title: 'Twitter', icon: cibTwitter, percent: 11, value: '37,564' },
-    { title: 'LinkedIn', icon: cibLinkedin, percent: 8, value: '27,319' },
-  ];
 
   const tableExample = [
     {
@@ -182,7 +176,7 @@ export default function DashboardPage() {
           <CRow>
             <CCol sm={5}>
               <h4 id="traffic" className="card-title mb-0">
-                Traffic
+                Total Carbon Emmisions
               </h4>
               <div className="small text-body-secondary">January - July 2023</div>
             </CCol>

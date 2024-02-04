@@ -12,7 +12,9 @@ router.use(
 );
 
 router.post('/register', registerUser);
-router.post('/login', loginUser)
-router.get('/profile', getProfile)
+router.post('/login', loginUser);
+router.get('/profile', getProfile);
+
+router.route('/tracker').post(createActivity).get(getActivity).delete(deleteActivity);
 
 module.exports = router;

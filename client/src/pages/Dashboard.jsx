@@ -1,6 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
-import 'client\node_modules\@coreui\coreui\scss\_card.scss';
+import '@coreui/coreui/dist/css/coreui.min.css'
+
 import {
   CAvatar,
   CButton,

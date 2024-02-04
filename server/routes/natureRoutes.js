@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const cors = require('cors');
-const { loginUser, registerUser, getProfile } = require('../controllers/authController');
 const {createNature, getAllNature, getSingleNature,deleteAllNature,deleteSingleNature} =require("../controllers/natureController")
 //change according to port you run on
 router.use(
@@ -11,10 +10,10 @@ router.use(
     })
 );
 
-router.post('/register', registerUser);
-router.post('/login', loginUser);
-router.get('/profile', getProfile);
-
-router.route('/tracker').post(createActivity).get(getActivity).delete(deleteActivity);
+router.post('/nature', createNature);
+router.get('/nature', getAllNature)
+router.get('/nature/:id', getSingleNature)
+router.delete('/nature/:id', deleteSingleNature)
+router.delete('/nature', deleteAllNature)
 
 module.exports = router;

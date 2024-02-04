@@ -2,3 +2,6 @@
 .env.example
 .env.local
 .env.staging
+
+client/node_modules
+server/node_modules

@@ -51,6 +51,7 @@ import avatar4 from '../assets/images/avatars/4.jpg';
 import avatar5 from '../assets/images/avatars/5.jpg';
 import avatar6 from '../assets/images/avatars/6.jpg';
 
+import WidgetsDropdown from '../components/WidgetsDropdown';
 import MainChart from '../components/MainChart';
 
 export default function DashboardPage() {
@@ -171,6 +172,7 @@ export default function DashboardPage() {
 
   return (
     <>
+    <WidgetsDropdown className="mb-4" />
       <CCard className="mb-4">
         <CCardBody>
           <CRow>

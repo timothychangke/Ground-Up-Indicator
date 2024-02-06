@@ -16,7 +16,8 @@ const createNature = async(req,res)=>{
 
 const getAllNature = async(req,res)=>{
     try{
-        const email = req.body;
+        const email = req.query.email;
+        console.log(email)
         const event = await Nature.find({email: email}).sort({createdAt:-1})
         return res.status(200).json(event)
     } catch (err){
@@ -36,7 +37,7 @@ const getSingleNature = async (req,res)=>{
 
 const deleteSingleNature= async (req,res)=>{
     try{
-        const id = req.params;
+        const id = req.params.id;
         const event = await Nature.findOneAndDelete({_id:id})
         res.status(200).json(event)
     } catch(err){
@@ -50,7 +51,7 @@ const deleteAllNature = async (req,res)=>{
         const event = await Nature.deleteMany({email:email})
         res.status(200).json(event)
     } catch(err){
-        res.startDate(400).json(err)
+        res.status(400).json(err)
     }
 }
 

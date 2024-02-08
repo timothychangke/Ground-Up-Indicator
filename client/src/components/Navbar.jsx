@@ -7,6 +7,7 @@ export function Navbar() {
             <NavLink to="/register">Register</NavLink>
             <NavLink to="/login">Login</NavLink>
             <NavLink to="/tracker">Tracker</NavLink>
+            <NavLink to='/naturetracker'>Nature Tracker</NavLink>
         </nav>
     );
 }

@@ -26,6 +26,7 @@ export default function Form() {
         endTime: dayjs('2024-02-12T00:00'),
     });
     const { user } = useContext(UserContext);
+    console.log(user)
     const onSubmit = async (data) => {
         if (!data) return;
         const newData = {

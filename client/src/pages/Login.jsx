@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { toast } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
@@ -10,6 +10,15 @@ export default function LoginPage() {
         email: '',
         password: '',
     });
+    const [user, setUser] = useState(null);
+    
+    const getUser= ()=>{
+        if (!user) {
+            axios.get('/profile').then(({ data }) => {
+                setUser(data);
+            });
+        }
+}
     const handleLoginUser = async (event) => {
         event.preventDefault();
         const { email, password } = userData;
@@ -18,6 +27,7 @@ export default function LoginPage() {
             if (response.data.error) {
                 toast.error(response.data.error);
             } else {
+                getUser();
                 setUserData({});
                 toast.success('Login successful. Welcome!');
                 navigate('/tracker');

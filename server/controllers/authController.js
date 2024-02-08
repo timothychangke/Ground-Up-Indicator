@@ -54,8 +54,7 @@ const loginUser = async (req, res) => {
             process.env.JWT_SECRET,
             { expiresIn: '3h' }
         );
-        res.cookie('token', token).json(user)
-        return res.json({ accessToken: accessToken });
+        return res.cookie('token', token).json(user);
     } catch (err) {
         console.log(err);
     }

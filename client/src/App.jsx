@@ -9,9 +9,10 @@ import DashboardPage from './pages/Dashboard';
 import axios from 'axios';
 import { Toaster } from 'react-hot-toast';
 import { UserContextProvider } from './context/userContext';
-
+import { NatureContextProvider } from './context/natureContext';
 import { store } from './store/store';
 import { Provider } from 'react-redux';
+import NatureTracker from './pages/NatureTracker';
 
 axios.defaults.baseURL = 'http://localhost:5173';
 axios.defaults.withCredentials = true;
@@ -19,6 +20,7 @@ axios.defaults.withCredentials = true;
 function App() {
     return (
         <Provider store={store}>
+            <NatureContextProvider>
             <UserContextProvider>
                 <Navbar />
                 <Toaster
@@ -30,9 +32,10 @@ function App() {
                     <Route path="/register" element={<RegisterPage />} />
                     <Route path="/login" element={<LoginPage />} />
                     <Route path="/tracker" element={<TrackerPage />} />
-                    <Route path="/dashboard" element={<DashboardPage/>} />
+                    <Route path='/naturetracker' element= {<NatureTracker/>}/>
                 </Routes>
             </UserContextProvider>
+            </NatureContextProvider>
         </Provider>
     );
 }

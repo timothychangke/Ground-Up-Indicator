@@ -6,6 +6,7 @@ import LoginPage from './pages/Login';
 import RegisterPage from './pages/Register';
 import TrackerPage from './pages/Tracker';
 import DashboardPage from './pages/Dashboard';
+import Sentiment from './pages/Sentiment'
 import axios from 'axios';
 import { Toaster } from 'react-hot-toast';
 import { UserContextProvider } from './context/userContext';
@@ -34,6 +35,7 @@ function App() {
                     <Route path="/tracker" element={<TrackerPage />} />
                     <Route path='/naturetracker' element= {<NatureTracker/>}/>
                     <Route path='/dashboard' element= {<DashboardPage/>}/>
+                    <Route path='/sentiment' element= {<Sentiment/>}/>
                 </Routes>
             </UserContextProvider>
             </NatureContextProvider>

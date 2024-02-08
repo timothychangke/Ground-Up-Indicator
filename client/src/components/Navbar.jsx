@@ -9,6 +9,7 @@ export function Navbar() {
             <NavLink to="/tracker">Tracker</NavLink>
             <NavLink to='/naturetracker'>Nature Tracker</NavLink>
             <NavLink to='/dashboard'>Dashboard</NavLink>
+            <NavLink to='/sentiment'>Sentiment</NavLink>
         </nav>
     );
 }

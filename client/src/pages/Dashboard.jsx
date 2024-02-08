@@ -56,11 +56,9 @@ import MainChart from '../components/MainChart';
 
 export default function DashboardPage() {
   const progressExample = [
-    { title:''},
     { title: 'Electricity', value: '29.703 Kg', percent: 20, color: 'success' },
     { title: 'Transportation', value: '24.093 Kg', percent: 20, color: 'info' },
     { title: 'Waste', value: '78.706 Kg', percent: 60, color: 'warning' },
-    {title:''}
     /*{ title: 'New Users', value: '22.123 Users', percent: 80, color: 'danger' },
     { title: 'Return Rate', value: 'Average Rate', percent: 40.15, color: 'primary' },*/
   ];
@@ -210,7 +208,7 @@ export default function DashboardPage() {
             sm={{ cols: 2 }}
             lg={{ cols: 4 }}
             xl={{ cols: 5 }}
-            className="mb-2 text-center"
+            className="mb-2 text-center justify-content-between"
           >
             {progressExample.map((item, index, items) => (
               <CCol
@@ -273,12 +271,7 @@ export default function DashboardPage() {
                         <div className="fs-5 fw-semibold">114</div>
                       </div>
                     </CCol>
-                    <CCol xs={6}>
-                      <div className="border-start border-start-4 border-start-success py-1 px-3 mb-3">
-                        <div className="text-body-secondary text-truncate small">Organic</div>
-                        <div className="fs-5 fw-semibold">49,123</div>
-                      </div>
-                    </CCol>
+                    
                   </CRow>
 
                   <hr className="mt-0" />
@@ -311,7 +304,7 @@ export default function DashboardPage() {
                     </CTableHeaderCell>
                     <CTableHeaderCell className="bg-body-tertiary">User</CTableHeaderCell>
                    
-                    <CTableHeaderCell className="bg-body-tertiary">Usage</CTableHeaderCell>
+                    <CTableHeaderCell className="bg-body-tertiary">Growth</CTableHeaderCell>
                     
                     <CTableHeaderCell className="bg-body-tertiary">Activity</CTableHeaderCell>
                   </CTableRow>

@@ -36,8 +36,6 @@ const WidgetsDropdown = () => {
               </CDropdownToggle>
               <CDropdownMenu>
                 <CDropdownItem>Action</CDropdownItem>
-                <CDropdownItem>Another action</CDropdownItem>
-                <CDropdownItem>Something else here...</CDropdownItem>
                 <CDropdownItem disabled>Disabled action</CDropdownItem>
               </CDropdownMenu>
             </CDropdown>
@@ -208,10 +206,7 @@ const WidgetsDropdown = () => {
                 <CIcon icon={cilOptions} className="text-high-emphasis-inverse" />
               </CDropdownToggle>
               <CDropdownMenu>
-                <CDropdownItem>Action</CDropdownItem>
-                <CDropdownItem>Another action</CDropdownItem>
-                <CDropdownItem>Something else here...</CDropdownItem>
-                <CDropdownItem disabled>Disabled action</CDropdownItem>
+                <CDropdownItem disabled>View returns</CDropdownItem>
               </CDropdownMenu>
             </CDropdown>
           }
@@ -281,10 +276,8 @@ const WidgetsDropdown = () => {
                 <CIcon icon={cilOptions} className="text-high-emphasis-inverse" />
               </CDropdownToggle>
               <CDropdownMenu>
-                <CDropdownItem>Action</CDropdownItem>
-                <CDropdownItem>Another action</CDropdownItem>
-                <CDropdownItem>Something else here...</CDropdownItem>
-                <CDropdownItem disabled>Disabled action</CDropdownItem>
+                <CDropdownItem>View Volunteers</CDropdownItem>
+         
               </CDropdownMenu>
             </CDropdown>
           }

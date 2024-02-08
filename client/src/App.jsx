@@ -33,6 +33,7 @@ function App() {
                     <Route path="/login" element={<LoginPage />} />
                     <Route path="/tracker" element={<TrackerPage />} />
                     <Route path='/naturetracker' element= {<NatureTracker/>}/>
+                    <Route path='/dashboard' element= {<DashboardPage/>}/>
                 </Routes>
             </UserContextProvider>
             </NatureContextProvider>

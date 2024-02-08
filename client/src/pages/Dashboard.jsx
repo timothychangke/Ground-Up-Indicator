@@ -56,11 +56,13 @@ import MainChart from '../components/MainChart';
 
 export default function DashboardPage() {
   const progressExample = [
-    { title: 'Carbon Emissions', value: '29.703 Users', percent: 40, color: 'success' },
-    { title: 'Nature Hours', value: '24.093 Users', percent: 20, color: 'info' },
-    { title: 'Pageviews', value: '78.706 Views', percent: 60, color: 'warning' },
-    { title: 'New Users', value: '22.123 Users', percent: 80, color: 'danger' },
-    { title: 'Return Rate', value: 'Average Rate', percent: 40.15, color: 'primary' },
+    { title:''},
+    { title: 'Electricity', value: '29.703 Kg', percent: 20, color: 'success' },
+    { title: 'Transportation', value: '24.093 Kg', percent: 20, color: 'info' },
+    { title: 'Waste', value: '78.706 Kg', percent: 60, color: 'warning' },
+    {title:''}
+    /*{ title: 'New Users', value: '22.123 Users', percent: 80, color: 'danger' },
+    { title: 'Return Rate', value: 'Average Rate', percent: 40.15, color: 'primary' },*/
   ];
 
   const progressGroupExample1 = [
@@ -230,23 +232,23 @@ export default function DashboardPage() {
       <CRow>
         <CCol xs>
           <CCard className="mb-4">
-            <CCardHeader>Traffic {' & '} Sales</CCardHeader>
+            <CCardHeader>Volunteer Profile</CCardHeader>
             <CCardBody>
               <CRow>
                 <CCol xs={12} md={6} xl={6}>
                   <CRow>
                     <CCol xs={6}>
                       <div className="border-start border-start-4 border-start-info py-1 px-3">
-                        <div className="text-body-secondary text-truncate small">New Clients</div>
-                        <div className="fs-5 fw-semibold">9,123</div>
+                        <div className="text-body-secondary text-truncate small">New Volunteers</div>
+                        <div className="fs-5 fw-semibold">23</div>
                       </div>
                     </CCol>
                     <CCol xs={6}>
                       <div className="border-start border-start-4 border-start-danger py-1 px-3 mb-3">
                         <div className="text-body-secondary text-truncate small">
-                          Recurring Clients
+                          Returning Volunteers
                         </div>
-                        <div className="fs-5 fw-semibold">22,643</div>
+                        <div className="fs-5 fw-semibold">91</div>
                       </div>
                     </CCol>
                   </CRow>
@@ -267,8 +269,8 @@ export default function DashboardPage() {
                   <CRow>
                     <CCol xs={6}>
                       <div className="border-start border-start-4 border-start-warning py-1 px-3 mb-3">
-                        <div className="text-body-secondary text-truncate small">Pageviews</div>
-                        <div className="fs-5 fw-semibold">78,623</div>
+                        <div className="text-body-secondary text-truncate small">Total</div>
+                        <div className="fs-5 fw-semibold">114</div>
                       </div>
                     </CCol>
                     <CCol xs={6}>
@@ -308,13 +310,9 @@ export default function DashboardPage() {
                       <CIcon icon={cilPeople} />
                     </CTableHeaderCell>
                     <CTableHeaderCell className="bg-body-tertiary">User</CTableHeaderCell>
-                    <CTableHeaderCell className="bg-body-tertiary text-center">
-                      Country
-                    </CTableHeaderCell>
+                   
                     <CTableHeaderCell className="bg-body-tertiary">Usage</CTableHeaderCell>
-                    <CTableHeaderCell className="bg-body-tertiary text-center">
-                      Payment Method
-                    </CTableHeaderCell>
+                    
                     <CTableHeaderCell className="bg-body-tertiary">Activity</CTableHeaderCell>
                   </CTableRow>
                 </CTableHead>
@@ -331,9 +329,7 @@ export default function DashboardPage() {
                           {item.user.registered}
                         </div>
                       </CTableDataCell>
-                      <CTableDataCell className="text-center">
-                        <CIcon size="xl" icon={item.country.flag} title={item.country.name} />
-                      </CTableDataCell>
+                     
                       <CTableDataCell>
                         <div className="d-flex justify-content-between text-nowrap">
                           <div className="fw-semibold">{item.usage.value}%</div>
@@ -343,9 +339,7 @@ export default function DashboardPage() {
                         </div>
                         <CProgress thin color={item.usage.color} value={item.usage.value} />
                       </CTableDataCell>
-                      <CTableDataCell className="text-center">
-                        <CIcon size="xl" icon={item.payment.icon} />
-                      </CTableDataCell>
+                     
                       <CTableDataCell>
                         <div className="small text-body-secondary text-nowrap">Last login</div>
                         <div className="fw-semibold text-nowrap">{item.activity}</div>

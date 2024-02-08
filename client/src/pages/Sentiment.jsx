@@ -7,6 +7,7 @@ import SendIcon from '@mui/icons-material/Send';
 function Sentiment() {
 
     const [text, setText] = useState("");
+    const [e, setError] = useState(false);
 
     async function query(data) { // Label 2 - positive, label 1 - neutral, label 0 - negative
         const response = await fetch(
@@ -22,9 +23,15 @@ function Sentiment() {
     }
 
     function analyze(){
-        query({"inputs": text}).then((response) => {
-            console.log(JSON.stringify(response[0])); // can send the data here back to the database
-        });
+        if (text.length < 30){
+            setError(true);
+        }
+        else{ // only analyze sentiments if lenght is more than 30
+            setError(false);
+            query({"inputs": text}).then((response) => {
+                console.log(JSON.stringify(response[0])); // can send the data here back to the database
+            });
+        }
         setText("");
     } 
 
@@ -44,7 +51,21 @@ function Sentiment() {
                         </h3>
                     </div>
                     <div className = "container max-w-4xl">
-                        <TextField onChange={(e) => setText(e.target.value)} value = {text} id="outlined-basic" label="Reply" variant="outlined" helperText="Let us know what you think!" multiline rows={4} fullWidth/>
+                        {e ? <TextField onChange={(e) => setText(e.target.value)} 
+                                    value = {text} id="outlined-basic" 
+                                    label="Reply" 
+                                    variant="outlined" 
+                                    helperText="Please write more than 30 characters"
+                                    multiline rows={4} 
+                                    fullWidth
+                                    error/> : 
+                                    <TextField onChange={(e) => setText(e.target.value)} 
+                                    value = {text} id="outlined-basic" 
+                                    label="Reply" 
+                                    variant="outlined" 
+                                    helperText="Let us know what you think!"
+                                    multiline rows={4} 
+                                    fullWidth/>}
                         <Button variant="outlined" onClick={() => {analyze();}} endIcon={<SendIcon />}>Submit</Button>
                     </div>
                 </div>

@@ -38,19 +38,17 @@ function Sentiment() {
     return (
         <div className="App">
             <div className="container mx-auto max-w-6xl text-center drop-shadow-lg text-gray-800">
-                <h1 className="text-4xl py-8 mb-10 bg-slate-800 text-white rounded">
+                <h1 className="text-4xl py-8 mb-10 bg-custom-green text-white rounded">
                     Opinion Column
                 </h1>
-                <div className="grid md:grid-rows-2 gap-4">
-                   <div>
-                        <h1>
-                            Question
+                <div className="grid md:grid-rows-2 gap-0 ">
+                        <h1 >
+                            Question: 
                         </h1>
-                        <h3>
+                        <h3 className='pb-2'>
                             What do you think of planting trees?
                         </h3>
-                    </div>
-                    <div className = "container max-w-4xl">
+                    <div className = "container max-w-4xl pt-12" >
                         {e ? <TextField onChange={(e) => setText(e.target.value)} 
                                     value = {text} id="outlined-basic" 
                                     label="Reply" 

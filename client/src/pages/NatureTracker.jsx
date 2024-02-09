@@ -33,7 +33,7 @@ export default function NatureTracker() {
 
     return (
         <div className="container mx-auto max-w-6xl text-center drop-shadow-lg text-gray-800">
-            <h1 className="text-4xl py-8 mb-10 bg-lime-600 text-white rounded">
+            <h1 className="text-4xl py-8 mb-10 bg-custom-emerald text-white rounded">
                 Nature Tracker
             </h1>
             <div className="grid md:grid-cols-2 gap-4">

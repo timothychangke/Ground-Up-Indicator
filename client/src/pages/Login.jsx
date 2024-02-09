@@ -1,24 +1,24 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { toast } from 'react-hot-toast';
-import { useNavigate } from 'react-router-dom';
-import classes from '../styles/login.module.css';
+import { NavLink, useNavigate } from 'react-router-dom';
+import * as Components from './loginStyles';
 
-export default function LoginPage() {
+export default function LoginPage({ handleSetPage, pageType }) {
     const navigate = useNavigate();
     const [userData, setUserData] = useState({
         email: '',
         password: '',
     });
     const [user, setUser] = useState(null);
-    
-    const getUser= ()=>{
+
+    const getUser = () => {
         if (!user) {
             axios.get('/profile').then(({ data }) => {
                 setUser(data);
             });
         }
-}
+    };
     const handleLoginUser = async (event) => {
         event.preventDefault();
         const { email, password } = userData;
@@ -31,35 +31,33 @@ export default function LoginPage() {
                 setUserData({});
                 toast.success('Login successful. Welcome!');
                 navigate('/tracker');
+                window.location.reload(false);
             }
         } catch (error) {}
     };
     return (
-        <div>
-            <form onSubmit={handleLoginUser}>
-                <label>Email</label>
-                <input
-                    type="email"
-                    placeholder="Enter Email..."
-                    value={userData.email}
-                    onChange={(event) =>
-                        setUserData({ ...userData, email: event.target.value })
-                    }
-                />
-                <label>Password</label>
-                <input
-                    type="password"
-                    placeholder="Enter Password..."
-                    value={userData.password}
-                    onChange={(event) =>
-                        setUserData({
-                            ...userData,
-                            password: event.target.value,
-                        })
-                    }
-                />
-                <button type="submit">Login</button>
-            </form>
-        </div>
+        <Components.Form className="bg-white flex items-center justify-center flex-col px-10 h-full text-center">
+            <Components.Title>Sign in</Components.Title>
+            <Components.Input
+                type="email"
+                placeholder="Email..."
+                value={userData.email}
+                onChange={(event) =>
+                    setUserData({ ...userData, email: event.target.value })
+                }
+            />
+            <Components.Input
+                type="password"
+                placeholder="Password..."
+                value={userData.password}
+                onChange={(event) =>
+                    setUserData({
+                        ...userData,
+                        password: event.target.value,
+                    })
+                }
+            />
+            <Components.Button type="submit" onClick={handleLoginUser}>Login</Components.Button>
+        </Components.Form>
     );
 }

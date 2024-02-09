@@ -16,6 +16,7 @@ import { useContext } from 'react';
 import { UserContext } from '../../context/userContext';
 import dayjs from 'dayjs';
 import { DateTimePicker } from '@mui/x-date-pickers';
+import axios from 'axios';
 
 export default function Form() {
     const [activityType, setActivityType] = useState('');
@@ -25,8 +26,13 @@ export default function Form() {
         startTime: dayjs('2024-02-12T00:00'),
         endTime: dayjs('2024-02-12T00:00'),
     });
-    const { user } = useContext(UserContext);
-    console.log(user)
+    const { user, setUser } = useContext(UserContext);
+    if (!user) {
+        axios.get('/profile').then(({ data }) => {
+            setUser(data);
+        });
+    }
+    console.log(user);
     const onSubmit = async (data) => {
         if (!data) return;
         const newData = {
@@ -35,7 +41,7 @@ export default function Form() {
             type: data.type,
             amount: dataProcessing(data, time),
             startDate: time.startTime,
-            endDate: time.endTime
+            endDate: time.endTime,
         };
         await addActivity(newData).unwrap();
         resetField('name');

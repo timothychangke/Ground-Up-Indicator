@@ -15,7 +15,7 @@ import { store } from './store/store';
 import { Provider } from 'react-redux';
 import NatureTracker from './pages/NatureTracker';
 
-axios.defaults.baseURL = 'http://localhost:5173';
+axios.defaults.baseURL = 'http://localhost:8000';
 axios.defaults.withCredentials = true;
 
 function App() {

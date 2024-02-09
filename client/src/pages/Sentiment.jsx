@@ -3,17 +3,20 @@ import { useState } from 'react';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import SendIcon from '@mui/icons-material/Send';
+import axios from 'axios';
+
 
 function Sentiment() {
 
     const [text, setText] = useState("");
     const [e, setError] = useState(false);
 
+
     async function query(data) { // Label 2 - positive, label 1 - neutral, label 0 - negative
         const response = await fetch(
             "https://api-inference.huggingface.co/models/cardiffnlp/twitter-roberta-base-sentiment",
             {
-                headers: { Authorization: "Bearer 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" }, // someone please blur out the key here please - in an .env file, i have no idea how to do this in JS
+                headers: { Authorization: "Bearer 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" },
                 method: "POST",
                 body: JSON.stringify(data),
             }
@@ -29,11 +32,39 @@ function Sentiment() {
         else{ // only analyze sentiments if lenght is more than 30
             setError(false);
             query({"inputs": text}).then((response) => {
-                console.log(JSON.stringify(response[0])); // can send the data here back to the database
+                console.log(JSON.stringify(response[0]));
+                 // can send the data here back to the database
+                 postScore((response[0]))
             });
         }
         setText("");
     } 
+
+    function postScore(data){
+        let positive = 0;
+        let negative = 0;
+
+        data.forEach(item => {
+            switch(item.label){
+                case "LABEL_2": 
+                    positive = item.score;
+                    break;
+                case "LABEL_0": 
+                    negative= item.score;
+                    break;
+                default:
+                    break;
+            }
+        });
+        const score = (positive-negative)*100;
+
+        axios.get('/profile').then(({ data }) => {
+            const email = data.email
+           axios.post('/reflection',{email, score}).then((res)=>{
+            console.log(res)
+           })
+        });
+    }
 
     return (
         <div className="App">

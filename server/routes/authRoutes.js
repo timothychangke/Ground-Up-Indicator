@@ -5,6 +5,8 @@ const { loginUser, registerUser, getProfile } = require('../controllers/authCont
 const {createNature, getAllNature, getSingleNature,deleteAllNature,deleteSingleNature} =require("../controllers/natureController")
 const {createActivity, getActivity,deleteActivity} = require('../controllers/trackerController')
 const {updateScores, getScores} = require('../controllers/scoreController')
+const {getReflection,postReflection} = require('../controllers/nlpScoreController')
+
 
 //change according to port you run on
 router.use(
@@ -29,5 +31,7 @@ router.delete('/nature', deleteAllNature)
 router.patch('/score', updateScores);
 router.get('/score', getScores)
 
+router.get('/reflection',getReflection)
+router.post('/reflection', postReflection)
 
 module.exports = router;

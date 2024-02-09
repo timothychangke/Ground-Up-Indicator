@@ -11,6 +11,7 @@ export default function GetScore() {
     const [patched, setPatched] = useState(false);
     const [graph,setGraph] = useState(false)
     const [data, setData] = useState(null);
+    const [nlp,setNLP]= useState(null)
     if (!natures) {
         const object = { email: user.email };
         axios
@@ -30,10 +31,22 @@ export default function GetScore() {
             setUser(data);
         });
     }
+
+    if (nlp == null){
+        const send = {
+            email:user.email
+        }
+        console.log(send)
+        axios.get('/reflection',{ params: send }).then((res)=>{
+           const nlpscore = (res.data.scoreArray.slice(-1)[0])
+            setNLP(nlpscore)
+        })
+    }
     const carbons = api.useGetActivityQuery(user).data
-    console.log("render")
+    console.log(nlp)
     useEffect(() => {
         if (user && natures && carbons && !patched) {
+           
             setPatched(true)
             console.log('hi');
             let totalDuration = 0;
@@ -83,8 +96,7 @@ export default function GetScore() {
                 Math.max(((totalEmission - 24000) / 24000) * 100 + 50, -100),
                 100
             );
-
-            console.log(natureScore, carbonScore);
+            console.log(nlp);
             const currDate = new Date();
             currDate.setHours(0, 0, 0, 0);
             const object = {
@@ -92,7 +104,7 @@ export default function GetScore() {
                 dateArray: currDate,
                 natureScoreArray: natureScore,
                 carbonScoreArray: carbonScore,
-                nlpScoreArray: Math.random()*100,
+                nlpScoreArray: nlp,
             };
             axios.patch('/score', object).then((res) => {
                 console.log(res.data);

@@ -11,7 +11,7 @@ const updateScores = async (req, res) => {
     } = req.body;
     const score = await Score.findOne({email: email});
     console.log(score)
-    if (score === null){
+    if (score == null){
         const event = await Score.create({
             email:email,
             dateArray:[dateArray],

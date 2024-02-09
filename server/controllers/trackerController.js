@@ -4,13 +4,14 @@ async function createActivity(req, res) {
     try {
         if (!req.body)
             return res.status(400).json('Data not provided correctly');
-        let { name, user, type, amount } = req.body;
+        let { name, user, type, amount, startDate,endDate } = req.body;
         const newActivity = new Activity({
             name,
             user,
             type,
             amount,
-            date: Date.now(),
+            startDate,
+            endDate,
         });
         const savedActivity = await newActivity.save();
         return res.status(201).json(savedActivity);

@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const ScoreModel = require("./Score");
 
 const {Schema} = mongoose
 
@@ -19,7 +20,7 @@ const natureSchema = new Schema ({
     duration:{
         type: Number,
         required: true,
-    }
+    },
 });
 
 const NatureModel = mongoose.model('Nature', natureSchema)

@@ -1,13 +1,72 @@
-import React from 'react';
+
+import React, { useState } from 'react';
+import GetScore from '../components/getScore';
 import BannerBackground from '../assets/images/background.png';
 import BannerImage from '../assets/images/trees3.png';
 import { FiArrowRight } from 'react-icons/fi';
 import classes from '../styles/homepage.module.css';
 import { NavLink } from 'react-router-dom';
+import './Home.css'
 
 export default function HomePage() {
+    const [showScore, setShowScore] = useState(false);
+    const [loading, setLoading] = useState(false);
+    const [successMessage, setSuccessMessage] = useState('');
+
+    const handleUpdateScore = async () => {
+        if (!loading) {
+            setLoading(true);
+            try {
+                await updateScore();
+                setSuccessMessage('Score updated successfully!');
+                setShowScore(true);
+            } catch (error) {
+                console.error('Error updating score:', error);
+                setSuccessMessage(
+                    'Failed to update score. Please try again later.'
+                );
+            } finally {
+                setLoading(false);
+                setTimeout(() => {
+                    setSuccessMessage('');
+                }, 3000);
+            }
+        }
+    };
+
+    const updateScore = async () => {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve();
+            }, 1500);
+        });
+    };
+
+    const handleHideScore = () => {
+        setShowScore(false);
+    };
+
     return (
-        <div className={classes.home_banner_container}>
+        <div className="home-container">
+            <div>Home</div>
+            <button className="update-score-button" onClick={handleUpdateScore}>
+                {loading ? 'Updating...' : 'Update your Score!'}
+            </button>
+            {showScore && (
+                <div>
+                    <GetScore />
+                    <button
+                        className="hide-score-button"
+                        onClick={handleHideScore}
+                    >
+                        Hide Score
+                    </button>
+                </div>
+            )}
+            {successMessage && (
+                <div className="success-message">{successMessage}</div>
+            )}
+             <div className={classes.home_banner_container}>
             <div className={classes.home_bannerImage_container}>
                 <img src={BannerBackground} alt="trees" />
             </div>
@@ -29,6 +88,6 @@ export default function HomePage() {
                     alt=""
                 />
             </div>
-        </div>
+     </div>
     );
 }

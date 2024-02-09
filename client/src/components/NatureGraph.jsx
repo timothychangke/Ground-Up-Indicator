@@ -35,17 +35,26 @@ export default function NatureGraph({ natures }) {
         animation: {
             duration: 1500, 
         },
+        plugins: {
+            legend: {
+                labels: {
+                    font: {
+                        family: 'Poppins',
+                    },
+                },
+            },
+        },
     };
     const data = {
         labels: dateArray,
         datasets: [
             {
-                label: 'Date',
+                label: 'Time Spent in Nature',
                 data: durationArray,
-                backgroundColor: 'white',
-                borderColor: 'black',
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgba(75, 192, 192, 1)',
                 borderWidth: 1,
-            },
+            }
         ],
     };
 

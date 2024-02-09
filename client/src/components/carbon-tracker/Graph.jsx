@@ -11,7 +11,15 @@ import getTotal from '../../utils/getTotal';
 Chart.register(ArcElement);
 
 export default function Graph() {
-    const { user } = useContext(UserContext);
+    const { user,setUser } = useContext(UserContext);
+    if (user == null){
+        axios.get('/profile').then(({ data }) => {
+            setUser(data);
+        });
+    }
+    if (!user){
+        return <div>Loading...</div>
+    }
     const { data, isFetching, isSuccess, isError } =
         api.useGetActivityQuery(user);
     let graphData;

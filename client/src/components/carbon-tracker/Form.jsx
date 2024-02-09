@@ -11,11 +11,12 @@ import * as React from 'react';
 import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { TimePicker } from '@mui/x-date-pickers/TimePicker';
 import dataProcessing from '../../utils/carbonTracker';
 import { useContext } from 'react';
 import { UserContext } from '../../context/userContext';
 import dayjs from 'dayjs';
+import { DateTimePicker } from '@mui/x-date-pickers';
+import axios from 'axios';
 
 export default function Form() {
     const [activityType, setActivityType] = useState('');
@@ -25,7 +26,15 @@ export default function Form() {
         startTime: dayjs('2024-02-12T00:00'),
         endTime: dayjs('2024-02-12T00:00'),
     });
-    const { user } = useContext(UserContext);
+
+    const { user, setUser } = useContext(UserContext);
+    if (!user) {
+        axios.get('/profile').then(({ data }) => {
+            setUser(data);
+        });
+    }
+    console.log(user);
+
     const onSubmit = async (data) => {
         if (!data) return;
         const newData = {
@@ -33,7 +42,8 @@ export default function Form() {
             user: user['name'],
             type: data.type,
             amount: dataProcessing(data, time),
-            date: Date.now(),
+            startDate: time.startTime,
+            endDate: time.endTime,
         };
         await addActivity(newData).unwrap();
         resetField('name');
@@ -96,7 +106,7 @@ export default function Form() {
                                     dateAdapter={AdapterDayjs}
                                 >
                                     <DemoContainer components={['TimePicker']}>
-                                        <TimePicker
+                                        <DateTimePicker
                                             label="Start Time"
                                             onChange={(newValue) => {
                                                 setTime({
@@ -113,7 +123,7 @@ export default function Form() {
                                     dateAdapter={AdapterDayjs}
                                 >
                                     <DemoContainer components={['TimePicker']}>
-                                        <TimePicker
+                                        <DateTimePicker
                                             label="End Time"
                                             onChange={(newValue) => {
                                                 setTime({

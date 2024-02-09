@@ -26,6 +26,7 @@ export default function Form() {
         startTime: dayjs('2024-02-12T00:00'),
         endTime: dayjs('2024-02-12T00:00'),
     });
+
     const { user, setUser } = useContext(UserContext);
     if (!user) {
         axios.get('/profile').then(({ data }) => {
@@ -33,6 +34,7 @@ export default function Form() {
         });
     }
     console.log(user);
+
     const onSubmit = async (data) => {
         if (!data) return;
         const newData = {
@@ -56,7 +58,7 @@ export default function Form() {
     };
     return (
         <div className="form max-w-sm mx-auto w-96">
-            <h1 className="font-bold pb-4 text-xl">Activities</h1>
+            <h1 className="font-bold pb-4 text-xl">Log Carbon Activities</h1>
             <form id="form" onSubmit={handleSubmit(onSubmit)}>
                 <div className="grid gap-4">
                     <div className="input-group">

@@ -2,8 +2,9 @@ import axios from 'axios';
 import { useState } from 'react';
 import { toast } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
+import * as Components from './loginStyles';
 
-export default function RegisterPage() {
+export default function RegisterPage({ handleSetPage, pageType }) {
     const navigate = useNavigate();
     const [userData, setUserData] = useState({
         name: '',
@@ -24,37 +25,36 @@ export default function RegisterPage() {
             } else {
                 setUserData({});
                 toast.success('Sign up successful. Please login!');
-                navigate('/login');
+                handleSetPage('login');
             }
         } catch (error) {
             console.log(error);
         }
     };
     return (
-        <div>
-            <form onSubmit={handleRegisterUser}>
-                <label>Name</label>
-                <input
+            <Components.Form
+                onSubmit={handleRegisterUser}
+            >
+                <Components.Title>Create Account</Components.Title>
+                <Components.Input
                     type="text"
-                    placeholder="Enter Name..."
+                    placeholder="Name..."
                     value={userData.name}
                     onChange={(event) =>
                         setUserData({ ...userData, name: event.target.value })
                     }
                 />
-                <label>Email</label>
-                <input
+                <Components.Input
                     type="email"
-                    placeholder="Enter Email..."
+                    placeholder="Email..."
                     value={userData.email}
                     onChange={(event) =>
                         setUserData({ ...userData, email: event.target.value })
                     }
                 />
-                <label>Password</label>
-                <input
+                <Components.Input
                     type="password"
-                    placeholder="Enter Password..."
+                    placeholder="Password..."
                     value={userData.password}
                     onChange={(event) =>
                         setUserData({
@@ -63,8 +63,12 @@ export default function RegisterPage() {
                         })
                     }
                 />
-                <button type="submit">Submit</button>
-            </form>
-        </div>
+                <Components.Button
+                    type="submit"
+                    
+                >
+                    Sign up
+                </Components.Button>
+            </Components.Form>
     );
 }

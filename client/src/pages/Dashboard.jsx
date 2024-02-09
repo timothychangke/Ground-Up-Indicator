@@ -59,8 +59,7 @@ export default function DashboardPage() {
     { title: 'Electricity', value: '29.703 Kg', percent: 20, color: 'success' },
     { title: 'Transportation', value: '24.093 Kg', percent: 20, color: 'info' },
     { title: 'Waste', value: '78.706 Kg', percent: 60, color: 'warning' },
-    /*{ title: 'New Users', value: '22.123 Users', percent: 80, color: 'danger' },
-    { title: 'Return Rate', value: 'Average Rate', percent: 40.15, color: 'primary' },*/
+
   ];
 
   const progressGroupExample1 = [
@@ -83,89 +82,77 @@ export default function DashboardPage() {
     {
       avatar: { src: avatar1, status: 'success' },
       user: {
-        name: 'Yiorgos Avraamu',
+        name: 'Cherie Tan',
         new: true,
         registered: 'Jan 1, 2023',
       },
-      country: { name: 'USA', flag: cifUs },
       usage: {
         value: 50,
         period: 'Jun 11, 2023 - Jul 10, 2023',
         color: 'success',
       },
-      payment: { name: 'Mastercard', icon: cibCcMastercard },
       activity: '10 sec ago',
     },
     {
       avatar: { src: avatar2, status: 'danger' },
       user: {
-        name: 'Avram Tarasios',
+        name: 'Gerald Smith',
         new: false,
         registered: 'Jan 1, 2023',
       },
-      country: { name: 'Brazil', flag: cifBr },
       usage: {
         value: 22,
         period: 'Jun 11, 2023 - Jul 10, 2023',
         color: 'info',
       },
-      payment: { name: 'Visa', icon: cibCcVisa },
       activity: '5 minutes ago',
     },
     {
       avatar: { src: avatar3, status: 'warning' },
-      user: { name: 'Quintin Ed', new: true, registered: 'Jan 1, 2023' },
-      country: { name: 'India', flag: cifIn },
+      user: { name: 'Benjamin Chang', new: true, registered: 'Jan 1, 2023' },
       usage: {
         value: 74,
         period: 'Jun 11, 2023 - Jul 10, 2023',
         color: 'warning',
       },
-      payment: { name: 'Stripe', icon: cibCcStripe },
       activity: '1 hour ago',
     },
     {
       avatar: { src: avatar4, status: 'secondary' },
-      user: { name: 'Enéas Kwadwo', new: true, registered: 'Jan 1, 2023' },
-      country: { name: 'France', flag: cifFr },
+      user: { name: 'Divya Gupta', new: true, registered: 'Jan 1, 2023' },
       usage: {
         value: 98,
         period: 'Jun 11, 2023 - Jul 10, 2023',
         color: 'danger',
       },
-      payment: { name: 'PayPal', icon: cibCcPaypal },
       activity: 'Last month',
     },
     {
       avatar: { src: avatar5, status: 'success' },
       user: {
-        name: 'Agapetus Tadeáš',
+        name: 'Kim Hyun Bin',
         new: true,
         registered: 'Jan 1, 2023',
       },
-      country: { name: 'Spain', flag: cifEs },
       usage: {
         value: 22,
         period: 'Jun 11, 2023 - Jul 10, 2023',
         color: 'primary',
       },
-      payment: { name: 'Google Wallet', icon: cibCcApplePay },
       activity: 'Last week',
     },
     {
       avatar: { src: avatar6, status: 'danger' },
       user: {
-        name: 'Friderik Dávid',
+        name: 'Paturi Karthik',
         new: true,
         registered: 'Jan 1, 2023',
       },
-      country: { name: 'Poland', flag: cifPl },
       usage: {
         value: 43,
         period: 'Jun 11, 2023 - Jul 10, 2023',
         color: 'success',
       },
-      payment: { name: 'Amex', icon: cibCcAmex },
       activity: 'Last week',
     },
   ];

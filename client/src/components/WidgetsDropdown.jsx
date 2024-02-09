@@ -199,7 +199,7 @@ const WidgetsDropdown = () => {
               </span>
             </>
           }
-          title="Return Rate"
+          title="Score Improvement"
           action={
             <CDropdown alignment="end">
               <CDropdownToggle color="transparent" caret={false} className="p-0">

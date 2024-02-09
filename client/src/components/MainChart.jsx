@@ -27,7 +27,34 @@ const MainChart = () => {
   }, [chartRef])
 
   const random = () => Math.round(Math.random() * 100)
+  const TransportationData = [
+    random(0, 200),
+                random(0, 200),
+                random(0, 200),
+                random(0, 200),
+                random(0, 200),
+                random(0, 200),
+                random(0, 200),
+  ]
+  const ElectricityData = [
+    random(0, 200),
+                random(0, 200),
+                random(0, 200),
+                random(0, 200),
+                random(0, 200),
+                random(0, 200),
+                random(0, 200),
+  ]
 
+  const WasteData =[
+    random(0, 200),
+                random(0, 200),
+                random(0, 200),
+                random(0, 200),
+                random(0, 200),
+                random(0, 200),
+                random(0, 200),
+  ]
   return (
     <>
       <CChartLine
@@ -37,46 +64,37 @@ const MainChart = () => {
           labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
           datasets: [
             {
-              label: 'My First dataset',
+              label: 'Transportation',
               backgroundColor: `rgba(${getStyle('--cui-info-rgb')}, .1)`,
               borderColor: getStyle('--cui-info'),
               pointHoverBackgroundColor: getStyle('--cui-info'),
               borderWidth: 2,
-              data: [
-                random(50, 200),
-                random(50, 200),
-                random(50, 200),
-                random(50, 200),
-                random(50, 200),
-                random(50, 200),
-                random(50, 200),
-              ],
-              fill: true,
+              data: TransportationData,
             },
             {
-              label: 'My Second dataset',
+              label: 'Electricity',
               backgroundColor: 'transparent',
               borderColor: getStyle('--cui-success'),
               pointHoverBackgroundColor: getStyle('--cui-success'),
               borderWidth: 2,
-              data: [
-                random(50, 200),
-                random(50, 200),
-                random(50, 200),
-                random(50, 200),
-                random(50, 200),
-                random(50, 200),
-                random(50, 200),
-              ],
+              data: ElectricityData
             },
             {
-              label: 'My Third dataset',
+              label: 'Waste',
+              backgroundColor: 'transparent',
+              borderColor: getStyle('--cui-warning'),
+              pointHoverBackgroundColor: getStyle('--cui-warning'),
+              borderWidth: 2,
+              data: WasteData
+            },
+            {
+              label: 'Total',
               backgroundColor: 'transparent',
               borderColor: getStyle('--cui-danger'),
               pointHoverBackgroundColor: getStyle('--cui-danger'),
               borderWidth: 1,
-              borderDash: [8, 5],
-              data: [65, 65, 65, 65, 65, 65, 65],
+              data: ElectricityData.map((num, index) => num + TransportationData[index] + WasteData[index]),
+              fill: true,
             },
           ],
         }}

@@ -26,7 +26,6 @@ export default function Form() {
         endTime: dayjs('2024-02-12T00:00'),
     });
     const { user } = useContext(UserContext);
-    console.log(user)
     const onSubmit = async (data) => {
         if (!data) return;
         const newData = {
@@ -49,7 +48,7 @@ export default function Form() {
     };
     return (
         <div className="form max-w-sm mx-auto w-96">
-            <h1 className="font-bold pb-4 text-xl">Activities</h1>
+            <h1 className="font-bold pb-4 text-xl">Log Carbon Activities</h1>
             <form id="form" onSubmit={handleSubmit(onSubmit)}>
                 <div className="grid gap-4">
                     <div className="input-group">

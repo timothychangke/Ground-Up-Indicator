@@ -53,7 +53,7 @@
     border-radius: 8px;
     transition: transform 0.3s ease-in-out;
 
-    &:hover {
+    /* &:hover {
         transform: translateY(-5px);
-    }
+    } */
 }

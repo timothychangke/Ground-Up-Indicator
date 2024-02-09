@@ -4,8 +4,6 @@ import { UserContext } from '../context/userContext';
 import axios from 'axios';
 
 export default function calculateLabels(natures) {
-  
-    console.log(natures)
   const dateArray = [];
   const durationArray = [];
 
@@ -28,7 +26,6 @@ export default function calculateLabels(natures) {
       dateArray.push(`${currDate.getDate()} ${getMonthShortForm(currDate.getMonth())} ${currDate.getFullYear()}`);
       durationArray.push(totalDuration);
     }
-    console.log(durationArray)
     return { dateArray, durationArray };
   }
 

@@ -25,9 +25,7 @@ export default function NatureTrackerForm() {
             duration:
                 ((endObject.getTime() - startObject.getTime())/ 60000) ,
         };
-        console.log(object.activity);
         axios.post('/nature', object).then((e) => {
-            console.log(e);
             dispatch({
                 type: 'CREATE_NATURE',
                 payload: e.data,
@@ -44,7 +42,7 @@ export default function NatureTrackerForm() {
     return (
         <div className="form max-w-sm mx-auto w-96">
             <h1 className="font-bold pb-4 text-xl">
-                Log your time spent connecting with nature 🌲🌳🌿
+                Log time spent in Nature 🌲🌳🌿
             </h1>
             <form
                 onSubmit={(e) => {
@@ -60,7 +58,7 @@ export default function NatureTrackerForm() {
                         setActivity(e.target.value);
                     }}
                 />
-                <div className="px-16">
+                <div className="px-16 py-6">
                     <LocalizationProvider dateAdapter={AdapterDayjs}>
                         <DemoContainer components={['TimePicker']}>
                             <DateTimePicker
@@ -73,7 +71,7 @@ export default function NatureTrackerForm() {
                         </DemoContainer>
                     </LocalizationProvider>
                 </div>
-                <div className="px-16">
+                <div className="px-16 pb-6">
                     <LocalizationProvider dateAdapter={AdapterDayjs}>
                         <DemoContainer components={['TimePicker']}>
                             <DateTimePicker

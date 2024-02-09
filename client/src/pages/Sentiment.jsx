@@ -4,12 +4,14 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import SendIcon from '@mui/icons-material/Send';
 import axios from 'axios';
+import GetScore from '../components/getScore';
 
 
 function Sentiment() {
 
     const [text, setText] = useState("");
     const [e, setError] = useState(false);
+    const [done,setDone]= useState(false)
 
 
     async function query(data) { // Label 2 - positive, label 1 - neutral, label 0 - negative
@@ -62,6 +64,7 @@ function Sentiment() {
             const email = data.email
            axios.post('/reflection',{email, score}).then((res)=>{
             console.log(res)
+            setDone(true)
            })
         });
     }
@@ -99,6 +102,9 @@ function Sentiment() {
                     </div>
                 </div>
             </div>
+           { done &&
+            <GetScore/>
+        }
         </div>
     );
 }

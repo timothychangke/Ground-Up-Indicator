@@ -37,4 +37,9 @@ const getScores = async(req,res)=>{
 
 }
 
-module.exports = {updateScores,getScores}
+const getAllScores= async(req,res)=>{
+    const score = await Score.find({})
+    res.status(200).json(score)
+}
+
+module.exports = {updateScores,getScores, getAllScores}

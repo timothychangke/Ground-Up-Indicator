@@ -7,6 +7,7 @@ import { default as api } from '../../store/apiSlice';
 import { useContext, useRef } from 'react';
 import { UserContext } from '../../context/userContext.jsx';
 import getTotal from '../../utils/getTotal';
+import axios from 'axios';
 
 Chart.register(ArcElement);
 

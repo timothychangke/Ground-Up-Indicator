@@ -4,7 +4,7 @@ const cors = require('cors');
 const { loginUser, registerUser, getProfile } = require('../controllers/authController');
 const {createNature, getAllNature, getSingleNature,deleteAllNature,deleteSingleNature} =require("../controllers/natureController")
 const {createActivity, getActivity,deleteActivity} = require('../controllers/trackerController')
-const {updateScores, getScores} = require('../controllers/scoreController')
+const {updateScores, getAllScores,getScores} = require('../controllers/scoreController')
 const {getReflection,postReflection} = require('../controllers/nlpScoreController')
 
 
@@ -33,5 +33,6 @@ router.get('/score', getScores)
 
 router.get('/reflection',getReflection)
 router.post('/reflection', postReflection)
+router.get('/allscore',getAllScores)
 
 module.exports = router;

@@ -19,18 +19,8 @@
     background-color: #45a049;
 }
 
-.hide-score-button {
-    margin-top: 20px;
-    padding: 10px 20px;
-    background-color: #f44336;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.hide-score-button:hover {
-    background-color: #d32f2f;
+#closebutton {
+    align-items: center;
 }
 
 .success-message {
@@ -40,4 +30,14 @@
     color: white;
     border-radius: 5px;
     text-align: center;
+}
+
+.graph-container {
+    position: relative;
+    z-index: 1; /* Ensure the graph appears above other elements */
+}
+
+.home_bannerImage_container {
+    position: relative;
+    z-index: 0; /* Lower the z-index of the banner background */
 }

@@ -2,7 +2,7 @@ import axios from 'axios';
 import { useContext, useState, useEffect } from 'react';
 import { NatureContext } from '../context/natureContext';
 import { UserContext } from '../context/userContext';
-import RadarGraph from './RadarGraph'
+
 
 import { default as api } from '../store/apiSlice';
 export default function GetScore() {
@@ -68,7 +68,7 @@ export default function GetScore() {
             }
 
             const natureScore = Math.min(
-                Math.max(((totalDuration - 60) / 60) * 100 + 50, -100),
+                Math.max(((totalDuration - 60) / 60) * 100 + 50, 10),
                 100
             );
 
@@ -93,7 +93,7 @@ export default function GetScore() {
             }
             console.log(totalEmission);
             const carbonScore = Math.min(
-                Math.max(((totalEmission - 24000) / 24000) * 100 + 50, -100),
+                Math.max(((totalEmission - 24000) / 24000) * 100 + 50, 10),
                 100
             );
             console.log(nlp);
@@ -110,14 +110,14 @@ export default function GetScore() {
                 console.log(res.data);
                 setData(res.data)
                 setGraph(true)
+                setPatched(false)
             });
+
+
+          
         }
     }, [carbons]);
 
-    return (
-        <div>
-            {graph && data && <RadarGraph graphData={data} />}
-        </div>
-        
-    );
+
+    return null;
 }

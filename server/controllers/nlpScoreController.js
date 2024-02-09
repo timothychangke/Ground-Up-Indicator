@@ -20,7 +20,6 @@ const postReflection = async (req, res) => {
     res.status(200).json(event)
 };
 
-
 const getReflection = async(req,res)=>{
     const email = req.query.email;
     console.log(email)

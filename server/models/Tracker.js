@@ -5,11 +5,13 @@ const activityScehma = new mongoose.Schema({
     user: { type: String },
     type: { type: String, default: 'Transportation' },
     amount: { type: String },
-    date: {
+    startDate: {
         type: Date,
-        default: Date.now(),
+    },
+    endDate: {
+        type: Date,
     },
 });
 
 const ActivityModel = mongoose.model('activity', activityScehma);
-module.exports = ActivityModel
+module.exports = ActivityModel;

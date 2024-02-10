@@ -18,7 +18,7 @@ import LoginRegisterPage from './pages/LoginRegister';
 
 //axios.defaults.baseURL = 'http://localhost:8000';
 //axios.defaults.baseURL = 'https://gui-h4g-api.netlify.app';
-axios.defaults.baseURL = 'https://gui-hack4good-api.onrender.com/';
+axios.defaults.baseURL = 'https://gui-hack4good-api.onrender.com';
 axios.defaults.withCredentials = true;
 
 function App() {

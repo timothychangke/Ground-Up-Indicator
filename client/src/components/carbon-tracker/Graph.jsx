@@ -13,18 +13,19 @@ Chart.register(ArcElement);
 
 export default function Graph() {
     const { user,setUser } = useContext(UserContext);
+    const { data, isFetching, isSuccess, isError } =
+    api.useGetActivityQuery(user);
     useEffect(()=>{
     if (user == null){
         axios.get('/profile').then(({ data }) => {
             setUser(data);
         });
     }
-},[])
+},[user,setUser])
     if (!user){
         return <div>Loading...</div>
     }
-    const { data, isFetching, isSuccess, isError } =
-        api.useGetActivityQuery(user);
+
     let graphData;
     if (isFetching) {
         graphData = <div>Loading...</div>;

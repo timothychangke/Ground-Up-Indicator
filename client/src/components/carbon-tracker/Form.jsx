@@ -28,11 +28,13 @@ export default function Form() {
     });
 
     const { user, setUser } = useContext(UserContext);
+    React.useEffect(()=>{
     if (!user) {
         axios.get('/profile').then(({ data }) => {
             setUser(data);
         });
     }
+},[user])
     console.log(user);
 
     const onSubmit = async (data) => {

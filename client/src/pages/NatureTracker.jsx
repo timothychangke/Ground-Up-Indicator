@@ -17,7 +17,7 @@ export default function NatureTracker() {
                 setUser(data);
             });
         }
-    }, []);
+    }, [user]);
 
     useEffect(() => {
         if (user){
@@ -67,6 +67,36 @@ export default function NatureTracker() {
                         </>
                     )}
                 </div>
+            </div>
+        </div>
+    );
+}
+
+function NatureActivity({ activity }) {
+    const { dispatch } = useContext(NatureContext);
+
+    const handleDelete = (id) => {
+        axios.delete(`/nature/${id}`).then((e) => {
+            dispatch({
+                type: 'DELETE_NATURE',
+                payload: e.data,
+            });
+        });
+    };
+
+    const formatDate = (date) => {
+        const options = { day: '2-digit', month: 'short', year: 'numeric' };
+        return new Date(date).toLocaleDateString('en-US', options);
+    };
+
+    return (
+        <div className="activity-box bg-green-100 rounded-lg p-4 mb-2 flex items-center">
+            <button onClick={(e) => handleDelete(activity._id)} className="text-red-600 hover:text-red-800 mr-2">
+                <box-icon name="trash" size="15px" />
+            </button>
+            <div>
+                <span className="block text-green-800">{activity.activity}</span>
+                <span className="block text-sm text-gray-600">{formatDate(activity.startDate)}</span>
             </div>
         </div>
     );

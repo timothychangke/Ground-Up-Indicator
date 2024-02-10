@@ -12,7 +12,7 @@ const {getReflection,postReflection} = require('../controllers/nlpScoreControlle
 router.use(
     cors({
         credentials: true,
-        // origin: "http://localhost:3000"
+        //origin: "http://localhost:3000"
         origin: `https://gui-hack4good.onrender.com`,
     })
 );

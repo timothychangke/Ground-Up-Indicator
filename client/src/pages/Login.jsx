@@ -1,8 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState,useContext } from 'react';
 import axios from 'axios';
 import { toast } from 'react-hot-toast';
 import { NavLink, useNavigate } from 'react-router-dom';
 import * as Components from './loginStyles';
+import { UserContext } from '../context/userContext';
 
 export default function LoginPage({ handleSetPage, pageType }) {
     const navigate = useNavigate();
@@ -10,12 +11,15 @@ export default function LoginPage({ handleSetPage, pageType }) {
         email: '',
         password: '',
     });
-    const [user, setUser] = useState(null);
+    const { user, userDispatch } = useContext(UserContext);
 
     const getUser = () => {
         if (!user) {
             axios.get('/profile').then(({ data }) => {
-                setUser(data);
+                userDispatch({
+                    type: 'SET_USERS',
+                    payload: data,
+                });
             });
         }
     };

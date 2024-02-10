@@ -29,15 +29,17 @@ export default function Form() {
 
     const { user, userDispatch } = useContext(UserContext);
     React.useEffect(()=>{
-    if (!user) {
+    if (user == null || user == undefined) {
         axios.get('/profile').then(({ data }) => {
+            console.log(data)
             userDispatch({
                 type: 'SET_USERS',
                 payload: data,
             });
+  
         });
     }
-},[user])
+},[user,userDispatch])
     console.log(user);
 
     const onSubmit = async (data) => {

@@ -6,9 +6,7 @@ To develop and implement a robust and reliable system for Ground-Up Initiative t
 ## Our Solution
 The Ground-Up Indicator (GUI) endeavors to quantify the impact of the organization's social initiatives to determine whether there is indeed a psychological influence on individuals, particularly regarding enhancements in their environmental consciousness. Our all-in-one solution comprises a carbon footprint tracker, a nature immersion tracker, sentiment analysis for reflective feedback, and a centralized dashboard to visualize aggregated data. This holistic solution seeks to provide an assessment of individuals' environmental conservation levels before and after engaging with Ground Up Initiative's conservation activities, thereby calculating the attributable change brought about by their events.
 
-
-https://github.com/timothychangke/hack4Good/assets/101695218/d081bef0-8daa-4b60-a054-b632f53f8763
-
+https://github.com/timothychangke/hack4Good/assets/101695218/0a33d547-5408-440d-aa8d-e33a74ad6867
 
 ## Features and Components
 ### Carbon Footprint Trackee 

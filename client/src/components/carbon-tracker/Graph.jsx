@@ -25,7 +25,9 @@ export default function Graph() {
             });
         });
     }
+
 }
+fetchUser();
 },[user,userDispatch])
 
     if (!user){

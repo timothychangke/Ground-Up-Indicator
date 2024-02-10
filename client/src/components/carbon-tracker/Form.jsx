@@ -45,6 +45,7 @@ export default function Form() {
         })
     }
     }
+    fetchUser()
 },[user,userDispatch])
 
     const onSubmit = async (data) => {

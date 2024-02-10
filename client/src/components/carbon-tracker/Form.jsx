@@ -26,7 +26,7 @@ export default function Form() {
         startTime: dayjs('2024-02-12T00:00'),
         endTime: dayjs('2024-02-12T00:00'),
     });
-
+    const [done, setDone] = useState(false)
     const { user, userDispatch } = useContext(UserContext);
     React.useEffect(()=>{
     if (user == null || user == undefined) {
@@ -35,12 +35,15 @@ export default function Form() {
             userDispatch({
                 type: 'SET_USERS',
                 payload: data,
-            });
+            })
   
-        });
+        }).finally(()=>{
+            if (user){
+                setDone(true)
+            }
+        })
     }
 },[user,userDispatch])
-    console.log(user);
 
     const onSubmit = async (data) => {
         if (!data) return;
@@ -64,6 +67,7 @@ export default function Form() {
         });
     };
     return (
+        done &&
         <div className="form max-w-sm mx-auto w-96">
             <h1 className="font-bold pb-4 text-xl">Log Carbon Activities</h1>
             <form id="form" onSubmit={handleSubmit(onSubmit)}>

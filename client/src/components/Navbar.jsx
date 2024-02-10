@@ -13,7 +13,7 @@ export function Navbar() {
                 });
             });
         }
-    },[user,setUser])
+    },[user,userDispatch])
     return (
         <>
             {!user && <></>}

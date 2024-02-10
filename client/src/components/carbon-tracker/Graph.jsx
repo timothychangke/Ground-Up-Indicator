@@ -24,7 +24,7 @@ export default function Graph() {
             });
         });
     }
-},[user,setUser])
+},[user,userDispatch])
     if (!user){
         return <div>Loading...</div>
     }

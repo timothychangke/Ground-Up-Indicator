@@ -7,7 +7,7 @@ import { UserContext } from '../context/userContext';
 import { default as api } from '../store/apiSlice';
 export default function GetScore() {
     const { natures, dispatch } = useContext(NatureContext);
-    const { user, setUser } = useContext(UserContext);
+    const { user, userDispatch } = useContext(UserContext);
     const [patched, setPatched] = useState(false);
     const [graph,setGraph] = useState(false)
     const [data, setData] = useState(null);
@@ -28,7 +28,10 @@ export default function GetScore() {
     }
     if (!user) {
         axios.get('/profile').then(({ data }) => {
-            setUser(data);
+            userDispatch({
+                type: 'SET_USERS',
+                payload: data,
+            });
         });
     }
 

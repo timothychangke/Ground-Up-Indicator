@@ -54,6 +54,7 @@ const loginUser = async (req, res) => {
             process.env.JWT_SECRET,
             { expiresIn: '3h' }
         );
+        console.log(token)
         return res.cookie('token', token, {secure : true}).json(user);
     } catch (err) {
         console.log(err);

@@ -24,3 +24,5 @@ We aim to test the app with more users to have better understanding of the app's
 3. go to ./client and run `npm install`
 4. Add in JWT Secret Token as `JWT_SECRET`, and mongo uri as `MONGO_URL` in YOUR .env file
 5. run `npm run dev`
+
+[Demo of app](https://youtu.be/MdARILko1bA)

@@ -32,7 +32,7 @@ export default function LoginPage({ handleSetPage, pageType }) {
                 toast.success('Login successful. Welcome!');
                 setTimeout(()=>{
                 },2000)
-                navigate('/home');
+                navigate('/tracker');
                 window.location.reload(false);
             }
         } catch (error) {}

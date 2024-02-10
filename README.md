@@ -1,6 +1,26 @@
-to run:
+# Hack4Good 2024
 
-cd into server directory and run 'npm start'
-cd into client directory and run 'npm run dev'
+## Problem Statement
+To develop and implement a robust and reliable system for Ground-Up Initiative to accurately track and measure the number of people impacted by volunteering efforts, as well as assess the depth and nature of this impact.
 
-if you face an accessToken error, go to ./server/routes/authRoutes.js and change the port number to the port the client is running on. It should work after.
+## Features and Components
+1. Carbon Footprint Tracker
+2. Time Spent in Nature Tracker
+3. Sentiment towards Nature Analysis using NLP
+4. Dashboard (for admin view of trends and data)
+
+## Technologies Used
+- MongoDB
+- ExpressJS
+- React
+- Node JS
+
+## What's next
+We aim to test the app with more users to have better understanding of the app's strengths and shortfalls.
+
+## Getting started
+1. go to ./server and run `npm install`
+2. run `npm start`
+3. go to ./client and run `npm install`
+4. Add in JWT Secret Token as `JWT_SECRET`, and mongo uri as `MONGO_URL` in YOUR .env file
+5. run `npm run dev`

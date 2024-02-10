@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Doughnut } from 'react-chartjs-2';
 import { Chart, ArcElement } from 'chart.js';
 import Labels from './Labels';
@@ -13,11 +13,13 @@ Chart.register(ArcElement);
 
 export default function Graph() {
     const { user,setUser } = useContext(UserContext);
+    useEffect(()=>{
     if (user == null){
         axios.get('/profile').then(({ data }) => {
             setUser(data);
         });
     }
+},[])
     if (!user){
         return <div>Loading...</div>
     }

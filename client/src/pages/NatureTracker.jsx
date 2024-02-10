@@ -19,6 +19,7 @@ export default function NatureTracker() {
     }, []);
 
     useEffect(() => {
+        if (user){
         const object = { email: user.email };
         axios
             .get('/nature', { params: object })
@@ -31,6 +32,7 @@ export default function NatureTracker() {
             .catch((error) => {
                 console.error('Error fetching nature:', error);
             });
+        }
     }, [user, dispatch]);
 
     return (

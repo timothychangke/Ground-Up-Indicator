@@ -27,11 +27,14 @@ export default function Form() {
         endTime: dayjs('2024-02-12T00:00'),
     });
 
-    const { user, setUser } = useContext(UserContext);
+    const { user, userDispatch } = useContext(UserContext);
     React.useEffect(()=>{
     if (!user) {
         axios.get('/profile').then(({ data }) => {
-            setUser(data);
+            userDispatch({
+                type: 'SET_USERS',
+                payload: data,
+            });
         });
     }
 },[user])

@@ -3,11 +3,14 @@ import { useContext, useEffect } from 'react';
 import { UserContext } from '../context/userContext';
 import axios from 'axios';
 export function Navbar() {
-    const { user,setUser } = useContext(UserContext);
+    const { user,userDispatch } = useContext(UserContext);
     useEffect(()=>{
         if (user == null){
             axios.get('/profile').then(({ data }) => {
-                setUser(data);
+                userDispatch({
+                    type: 'SET_USERS',
+                    payload: data,
+                });
             });
         }
     },[user,setUser])

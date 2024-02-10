@@ -8,14 +8,17 @@ import NatureGraph from '../components/NatureGraph';
 
 export default function NatureTracker() {
     const { natures, dispatch } = useContext(NatureContext);
-    const { user, setUser } = useContext(UserContext);
+    const { user, userDispatch } = useContext(UserContext);
     const [isLoading, setIsLoading] = useState(true);
     const [ready,setReady] = useState(false)
 
     useEffect(() => {
         if (!user) {
             axios.get('/profile').then(({ data }) => {
-                setUser(data);
+                userDispatch({
+                    type: 'SET_USERS',
+                    payload: data,
+                });
             }).finally(()=>{
                 setReady(true)
             })

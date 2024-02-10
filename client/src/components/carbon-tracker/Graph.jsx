@@ -12,13 +12,16 @@ import axios from 'axios';
 Chart.register(ArcElement);
 
 export default function Graph() {
-    const { user,setUser } = useContext(UserContext);
+    const { user,userDispatch } = useContext(UserContext);
     const { data, isFetching, isSuccess, isError } =
     api.useGetActivityQuery(user);
     useEffect(()=>{
     if (user == null){
         axios.get('/profile').then(({ data }) => {
-            setUser(data);
+            userDispatch({
+                type: 'SET_USERS',
+                payload: data,
+            });
         });
     }
 },[user,setUser])

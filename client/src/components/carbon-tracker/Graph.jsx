@@ -25,6 +25,7 @@ export default function Graph() {
         });
     }
 },[user,userDispatch])
+
     if (!user){
         return <div>Loading...</div>
     }

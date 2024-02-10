@@ -1,9 +1,16 @@
 import { NavLink } from 'react-router-dom';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { UserContext } from '../context/userContext';
 
 export function Navbar() {
-    const { user } = useContext(UserContext);
+    const { user,setUser } = useContext(UserContext);
+    useEffect(()=>{
+        if (user == null){
+            axios.get('/profile').then(({ data }) => {
+                setUser(data);
+            });
+        }
+    },[user,setUser])
     return (
         <>
             {!user && <></>}

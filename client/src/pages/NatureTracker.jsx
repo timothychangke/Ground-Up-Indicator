@@ -10,12 +10,15 @@ export default function NatureTracker() {
     const { natures, dispatch } = useContext(NatureContext);
     const { user, setUser } = useContext(UserContext);
     const [isLoading, setIsLoading] = useState(true);
+    const [ready,setReady] = useState(false)
 
     useEffect(() => {
         if (!user) {
             axios.get('/profile').then(({ data }) => {
                 setUser(data);
-            });
+            }).finally(()=>{
+                setReady(true)
+            })
         }
     }, [user]);
 
@@ -40,6 +43,7 @@ export default function NatureTracker() {
     }, [user, dispatch]);
 
     return (
+        ready &&
         <div className="container mx-auto max-w-6xl text-center drop-shadow-lg text-gray-800">
             <h1 className="text-4xl py-8 mb-10 bg-custom-emerald text-white rounded">
                 Nature Tracker
@@ -69,6 +73,7 @@ export default function NatureTracker() {
                 </div>
             </div>
         </div>
+        
     );
 }
 

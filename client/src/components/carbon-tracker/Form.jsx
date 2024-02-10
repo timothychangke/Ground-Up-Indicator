@@ -26,27 +26,29 @@ export default function Form() {
         startTime: dayjs('2024-02-12T00:00'),
         endTime: dayjs('2024-02-12T00:00'),
     });
-    const [done, setDone] = useState(false)
+    const [done, setDone] = useState(false);
     const { user, userDispatch } = useContext(UserContext);
-    React.useEffect(()=>{
-    if (user == null || user == undefined) {
-        async function fetchUser(){
-         await axios.get('/profile').then(({ data }) => {
-            console.log(data)
-            userDispatch({
-                type: 'SET_USERS',
-                payload: data,
-            })
-  
-        }).finally(()=>{
-            if (user){
-                setDone(true)
+    React.useEffect(() => {
+        async function fetchUser() {
+            if (user == null || user == undefined) {
+                await axios
+                    .get('/profile')
+                    .then(({ data }) => {
+                        console.log(data);
+                        userDispatch({
+                            type: 'SET_USERS',
+                            payload: data,
+                        });
+                    })
+                    .finally(() => {
+                        if (user) {
+                            setDone(true);
+                        }
+                    });
             }
-        })
-    }
-    }
-    fetchUser()
-},[user,userDispatch])
+        }
+        fetchUser();
+    }, [user, userDispatch]);
 
     const onSubmit = async (data) => {
         if (!data) return;
@@ -70,183 +72,201 @@ export default function Form() {
         });
     };
     return (
-        done &&
-        <div className="form max-w-sm mx-auto w-96">
-            <h1 className="font-bold pb-4 text-xl">Log Carbon Activities</h1>
-            <form id="form" onSubmit={handleSubmit(onSubmit)}>
-                <div className="grid gap-4">
-                    <div className="input-group">
-                        <input
-                            type="text"
-                            placeholder="Name of activity..."
-                            className="form-input py-3"
-                            {...register('name')}
-                        />
-                    </div>
-                    <select
-                        className="form-input py-3"
-                        {...register('type')}
-                        placeholder="mode of transport"
-                        onChange={(event) =>
-                            setActivityType(event.target.value)
-                        }
-                    >
-                        <option value="Activity type...">
-                            Activity type...
-                        </option>
-                        <option value="Transportation">Transportation</option>
-                        <option value="Electricity">Electricity</option>
-                        <option value="Waste">Waste</option>
-                    </select>
-
-                    {activityType == 'Transportation' ? (
-                        <>
-                            <select
+        done && (
+            <div className="form max-w-sm mx-auto w-96">
+                <h1 className="font-bold pb-4 text-xl">
+                    Log Carbon Activities
+                </h1>
+                <form id="form" onSubmit={handleSubmit(onSubmit)}>
+                    <div className="grid gap-4">
+                        <div className="input-group">
+                            <input
+                                type="text"
+                                placeholder="Name of activity..."
                                 className="form-input py-3"
-                                {...register('subType')}
-                            >
-                                <option value="">Mode of Transport...</option>
-                                {transportEmissions.map((transportMode) => (
-                                    <option
-                                        value={transportMode.name}
-                                        key={transportMode.name}
-                                    >
-                                        {transportMode.name}
-                                    </option>
-                                ))}
-                            </select>
-                            <div className="px-16">
-                                <LocalizationProvider
-                                    dateAdapter={AdapterDayjs}
-                                >
-                                    <DemoContainer components={['TimePicker']}>
-                                        <DateTimePicker
-                                            label="Start Time"
-                                            onChange={(newValue) => {
-                                                setTime({
-                                                    ...time,
-                                                    startTime: newValue,
-                                                });
-                                            }}
-                                        />
-                                    </DemoContainer>
-                                </LocalizationProvider>
-                            </div>
-                            <div className="px-16">
-                                <LocalizationProvider
-                                    dateAdapter={AdapterDayjs}
-                                >
-                                    <DemoContainer components={['TimePicker']}>
-                                        <DateTimePicker
-                                            label="End Time"
-                                            onChange={(newValue) => {
-                                                setTime({
-                                                    ...time,
-                                                    endTime: newValue,
-                                                });
-                                            }}
-                                        />
-                                    </DemoContainer>
-                                </LocalizationProvider>
-                            </div>
-                        </>
-                    ) : (
-                        ''
-                    )}
-
-                    {activityType == 'Electricity' ? (
-                        <>
-                            <select
-                                className="form-input py-3"
-                                {...register('subType')}
-                            >
-                                <option value="">Type of use...</option>
-                                {electricityEmissions.map((use) => (
-                                    <option value={use.type} key={use.type}>
-                                        {use.type}
-                                    </option>
-                                ))}
-                            </select>
-                            <div className="px-16">
-                                <LocalizationProvider
-                                    dateAdapter={AdapterDayjs}
-                                >
-                                    <DemoContainer components={['TimePicker']}>
-                                        <TimePicker
-                                            label="Start Time"
-                                            onChange={(newValue) => {
-                                                setTime({
-                                                    ...time,
-                                                    startTime: newValue,
-                                                });
-                                            }}
-                                        />
-                                    </DemoContainer>
-                                </LocalizationProvider>
-                            </div>
-                            <div className="px-16">
-                                <LocalizationProvider
-                                    dateAdapter={AdapterDayjs}
-                                >
-                                    <DemoContainer components={['TimePicker']}>
-                                        <TimePicker
-                                            label="End Time"
-                                            onChange={(newValue) => {
-                                                setTime({
-                                                    ...time,
-                                                    endTime: newValue,
-                                                });
-                                            }}
-                                        />
-                                    </DemoContainer>
-                                </LocalizationProvider>
-                            </div>
-                        </>
-                    ) : (
-                        ''
-                    )}
-                    {activityType == 'Waste' ? (
-                        <>
-                            <select
-                                className="form-input py-3"
-                                {...register('subType')}
-                            >
-                                <option value="">Type of Waste...</option>
-                                {wasteEmissions.map((waste) => (
-                                    <option value={waste.type} key={waste.type}>
-                                        {waste.type}
-                                    </option>
-                                ))}
-                            </select>
-                            <div className="input-group">
-                                <input
-                                    type="text"
-                                    placeholder="Weight (in grams)"
-                                    className="form-input py-3"
-                                    {...register('weight')}
-                                />
-                            </div>
-                        </>
-                    ) : (
-                        ''
-                    )}
-                    {activityType == 'Transportation' ||
-                    activityType == 'Electricity' ||
-                    activityType == 'Waste' ? (
-                        <div className="submit-btn">
-                            <button
-                                type="submit"
-                                className="border py-2 text-white bg-indigo-500 w-full"
-                            >
-                                Track Carbon!
-                            </button>
+                                {...register('name')}
+                            />
                         </div>
-                    ) : (
-                        ''
-                    )}
-                </div>
-            </form>
-            <List />
-        </div>
+                        <select
+                            className="form-input py-3"
+                            {...register('type')}
+                            placeholder="mode of transport"
+                            onChange={(event) =>
+                                setActivityType(event.target.value)
+                            }
+                        >
+                            <option value="Activity type...">
+                                Activity type...
+                            </option>
+                            <option value="Transportation">
+                                Transportation
+                            </option>
+                            <option value="Electricity">Electricity</option>
+                            <option value="Waste">Waste</option>
+                        </select>
+
+                        {activityType == 'Transportation' ? (
+                            <>
+                                <select
+                                    className="form-input py-3"
+                                    {...register('subType')}
+                                >
+                                    <option value="">
+                                        Mode of Transport...
+                                    </option>
+                                    {transportEmissions.map((transportMode) => (
+                                        <option
+                                            value={transportMode.name}
+                                            key={transportMode.name}
+                                        >
+                                            {transportMode.name}
+                                        </option>
+                                    ))}
+                                </select>
+                                <div className="px-16">
+                                    <LocalizationProvider
+                                        dateAdapter={AdapterDayjs}
+                                    >
+                                        <DemoContainer
+                                            components={['TimePicker']}
+                                        >
+                                            <DateTimePicker
+                                                label="Start Time"
+                                                onChange={(newValue) => {
+                                                    setTime({
+                                                        ...time,
+                                                        startTime: newValue,
+                                                    });
+                                                }}
+                                            />
+                                        </DemoContainer>
+                                    </LocalizationProvider>
+                                </div>
+                                <div className="px-16">
+                                    <LocalizationProvider
+                                        dateAdapter={AdapterDayjs}
+                                    >
+                                        <DemoContainer
+                                            components={['TimePicker']}
+                                        >
+                                            <DateTimePicker
+                                                label="End Time"
+                                                onChange={(newValue) => {
+                                                    setTime({
+                                                        ...time,
+                                                        endTime: newValue,
+                                                    });
+                                                }}
+                                            />
+                                        </DemoContainer>
+                                    </LocalizationProvider>
+                                </div>
+                            </>
+                        ) : (
+                            ''
+                        )}
+
+                        {activityType == 'Electricity' ? (
+                            <>
+                                <select
+                                    className="form-input py-3"
+                                    {...register('subType')}
+                                >
+                                    <option value="">Type of use...</option>
+                                    {electricityEmissions.map((use) => (
+                                        <option value={use.type} key={use.type}>
+                                            {use.type}
+                                        </option>
+                                    ))}
+                                </select>
+                                <div className="px-16">
+                                    <LocalizationProvider
+                                        dateAdapter={AdapterDayjs}
+                                    >
+                                        <DemoContainer
+                                            components={['TimePicker']}
+                                        >
+                                            <TimePicker
+                                                label="Start Time"
+                                                onChange={(newValue) => {
+                                                    setTime({
+                                                        ...time,
+                                                        startTime: newValue,
+                                                    });
+                                                }}
+                                            />
+                                        </DemoContainer>
+                                    </LocalizationProvider>
+                                </div>
+                                <div className="px-16">
+                                    <LocalizationProvider
+                                        dateAdapter={AdapterDayjs}
+                                    >
+                                        <DemoContainer
+                                            components={['TimePicker']}
+                                        >
+                                            <TimePicker
+                                                label="End Time"
+                                                onChange={(newValue) => {
+                                                    setTime({
+                                                        ...time,
+                                                        endTime: newValue,
+                                                    });
+                                                }}
+                                            />
+                                        </DemoContainer>
+                                    </LocalizationProvider>
+                                </div>
+                            </>
+                        ) : (
+                            ''
+                        )}
+                        {activityType == 'Waste' ? (
+                            <>
+                                <select
+                                    className="form-input py-3"
+                                    {...register('subType')}
+                                >
+                                    <option value="">Type of Waste...</option>
+                                    {wasteEmissions.map((waste) => (
+                                        <option
+                                            value={waste.type}
+                                            key={waste.type}
+                                        >
+                                            {waste.type}
+                                        </option>
+                                    ))}
+                                </select>
+                                <div className="input-group">
+                                    <input
+                                        type="text"
+                                        placeholder="Weight (in grams)"
+                                        className="form-input py-3"
+                                        {...register('weight')}
+                                    />
+                                </div>
+                            </>
+                        ) : (
+                            ''
+                        )}
+                        {activityType == 'Transportation' ||
+                        activityType == 'Electricity' ||
+                        activityType == 'Waste' ? (
+                            <div className="submit-btn">
+                                <button
+                                    type="submit"
+                                    className="border py-2 text-white bg-indigo-500 w-full"
+                                >
+                                    Track Carbon!
+                                </button>
+                            </div>
+                        ) : (
+                            ''
+                        )}
+                    </div>
+                </form>
+                <List />
+            </div>
+        )
     );
 }

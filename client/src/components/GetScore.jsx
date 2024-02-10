@@ -40,12 +40,15 @@ export default function GetScore() {
         axios.get('/reflection',{ params: send }).then((res)=>{
            const nlpscore = (res.data.scoreArray.slice(-1)[0])
             setNLP(nlpscore)
+            setTimeout(() => {
+                ;
+              }, 2000);
         })
     }
     const carbons = api.useGetActivityQuery(user).data
     console.log(nlp)
     useEffect(() => {
-        if (user && natures && carbons && !patched) {
+        if (user && nlp && natures && carbons && !patched) {
            
             setPatched(true)
             console.log('hi');

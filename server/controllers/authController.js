@@ -54,13 +54,14 @@ const loginUser = async (req, res) => {
             process.env.JWT_SECRET,
             { expiresIn: '3h' }
         );
-        return res.cookie('token', token).json(user);
+        return res.cookie('token', token, {secure : true}).json(user);
     } catch (err) {
         console.log(err);
     }
 };
 
 const getProfile = (req, res) => {
+    console.log(req.cookies)
     const token = req.cookies.token;
     if (token) {
         jwt.verify(token, process.env.JWT_SECRET, {}, (err, user) => {

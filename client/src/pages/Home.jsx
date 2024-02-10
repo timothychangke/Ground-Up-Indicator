@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import GetScore from '../components/getScore';
 import BannerBackground from '../assets/images/background.png';
 import BannerImage from '../assets/images/trees3.png';
 import { FiArrowRight } from 'react-icons/fi';

@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import { useContext, useEffect } from 'react';
 import { UserContext } from '../context/userContext';
-
+import axios from 'axios';
 export function Navbar() {
     const { user,setUser } = useContext(UserContext);
     useEffect(()=>{

@@ -13,7 +13,7 @@ router.use(
     cors({
         credentials: true,
         //origin: "http://localhost:3000"
-        origin: `https://gui-h4g.netlify.app`,
+        origin: `https://gui-hack4good.onrender.com`,
     })
 );
 

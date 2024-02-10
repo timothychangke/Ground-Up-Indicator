@@ -7,6 +7,7 @@ import axios from 'axios';
 import GetScore from '../components/getScore';
 
 
+
 function Sentiment() {
 
     const [text, setText] = useState("");

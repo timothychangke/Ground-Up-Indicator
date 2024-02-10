@@ -34,7 +34,7 @@ export default function Form() {
                 await axios
                     .get('/profile')
                     .then(({ data }) => {
-                        console.log(data);
+                        console.log("check: " + data);
                         userDispatch({
                             type: 'SET_USERS',
                             payload: data,

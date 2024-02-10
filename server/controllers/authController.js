@@ -55,7 +55,7 @@ const loginUser = async (req, res) => {
             { expiresIn: '3h' }
         );
         console.log("token " + token)
-        return res.cookie('token', token, {secure : true}).json(user);
+        return res.cookie('token', token, {secure : true, httpOnly: true}).json(user);
     } catch (err) {
         console.log(err);
     }

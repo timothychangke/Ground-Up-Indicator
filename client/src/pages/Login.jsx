@@ -27,10 +27,10 @@ export default function LoginPage({ handleSetPage, pageType }) {
         event.preventDefault();
         const { email, password } = userData;
         try {
-            const response = await axios.post('/login', { email, password });
+            const response = await axios.post('/login', { email, password }, { withCredentials: true });
             if (response.data.error) {
                 toast.error(response.data.error);
-            } else {
+            }else {
                 getUser();
                 setUserData({});
                 toast.success('Login successful. Welcome!');

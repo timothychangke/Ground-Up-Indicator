@@ -4,7 +4,7 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import SendIcon from '@mui/icons-material/Send';
 import axios from 'axios';
-import GetScore from '../components/getScore';
+import GetScore from '../components/GetScore';
 
 
 

@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { UserContextProvider } from '../context/userContext';
 
-const baseUrl = 'http://localhost:8000';
+const baseUrl = 'https://gui-hack4good-api.onrender.com/';
 
 export const apiSlice = createApi({
     baseQuery: fetchBaseQuery({ baseUrl: baseUrl }),

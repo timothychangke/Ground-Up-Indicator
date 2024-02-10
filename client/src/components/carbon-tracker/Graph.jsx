@@ -16,14 +16,16 @@ export default function Graph() {
     const { data, isFetching, isSuccess, isError } =
     api.useGetActivityQuery(user);
     useEffect(()=>{
+        async function fetchUser(){
     if (user == null){
-        axios.get('/profile').then(({ data }) => {
+        await axios.get('/profile').then(({ data }) => {
             userDispatch({
                 type: 'SET_USERS',
                 payload: data,
             });
         });
     }
+}
 },[user,userDispatch])
 
     if (!user){

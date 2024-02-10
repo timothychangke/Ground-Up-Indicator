@@ -30,7 +30,8 @@ export default function Form() {
     const { user, userDispatch } = useContext(UserContext);
     React.useEffect(()=>{
     if (user == null || user == undefined) {
-        axios.get('/profile').then(({ data }) => {
+        async function fetchUser(){
+         await axios.get('/profile').then(({ data }) => {
             console.log(data)
             userDispatch({
                 type: 'SET_USERS',
@@ -42,6 +43,7 @@ export default function Form() {
                 setDone(true)
             }
         })
+    }
     }
 },[user,userDispatch])
 
